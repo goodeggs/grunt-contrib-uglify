@@ -190,14 +190,26 @@ module.exports = function(grunt) {
         }
       },
       sourcemap_sources: {
-          files: {
-            'tmp/sourcemap_sources.js': ['test/fixtures/src/simple.js']
-          },
-          options: {
-            sourceMap: true,
-            sourceMapIncludeSources: true
-          }
+        files: {
+          'tmp/sourcemap_sources.js': ['test/fixtures/src/simple.js']
         },
+        options: {
+          sourceMap: true,
+          sourceMapIncludeSources: true
+        }
+      },
+      sourcemapin_sources: {
+        files: {
+          'tmp/sourcemapin_sources.js': ['test/fixtures/src/simple2.js']
+        },
+        options: {
+          sourceMap: true,
+          sourceMapIn: function() {
+            return 'test/fixtures/src/simple2.map';
+          },
+          sourceMapIncludeSources: true
+        }
+      },
     },
 
     // Unit tests.
@@ -258,6 +270,7 @@ module.exports = function(grunt) {
     'uglify:sourcemap_multipleFunctionNames',
     'uglify:sourcemapin',
     'uglify:sourcemap_sources',
+    'uglify:sourcemapin_sources',
     'nodeunit'
   ]);
 
